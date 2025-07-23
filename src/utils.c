@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 13:32:35 by odana             #+#    #+#             */
-/*   Updated: 2025/07/23 14:13:10 by odana            ###   ########.fr       */
+/*   Updated: 2025/07/23 14:53:00 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void safe_log(t_data *data, int philo_id, char *message)
     }
     pthread_mutex_unlock(&data->log);
 }
-int	ft_atoi(const char *str)
+int	ft_atoi(char *str)
 {
 	int	i;
 	int	sign;
