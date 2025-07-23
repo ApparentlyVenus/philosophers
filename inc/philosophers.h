@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 21:30:24 by odana             #+#    #+#             */
-/*   Updated: 2025/07/23 14:07:17 by odana            ###   ########.fr       */
+/*   Updated: 2025/07/23 14:25:15 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,14 @@ long long	get_timestamp(void);
 long long	get_elapsed_time(t_data *data);
 void		precise_sleep(int duration_ms);
 void		safe_log(t_data *data, int philo_id, char *message);
+
+// parsing and initialization
+
+int			validate_arguments(int argc, char **argv);
+t_data		*parse_arguments(int argc, char **argv);
+int			allocate_philos(t_data *data);
+void		initialize_philosophers(t_data *data);
+int			initialize_mutexes(t_data *data);
 
 // fork management
 
