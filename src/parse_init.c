@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 21:29:58 by odana             #+#    #+#             */
-/*   Updated: 2025/07/21 23:28:52 by odana            ###   ########.fr       */
+/*   Updated: 2025/07/23 14:11:41 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	initialize_mutexes(t_data *data)
 			return (cleanup_mutexes(data, i), 0);
 		i++;
 	}
-	if (pthread_mutex_init(&data->permission, NULL) != 0
+	if (pthread_mutex_init(&data->eating_permission, NULL) != 0
 		|| pthread_mutex_init(&data->death, NULL) != 0
 		|| pthread_mutex_init(&data->log, NULL) != 0
 		|| pthread_mutex_init(&data->meal, NULL) != 0)
