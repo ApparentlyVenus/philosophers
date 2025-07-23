@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:59:46 by odana             #+#    #+#             */
-/*   Updated: 2025/07/22 17:32:10 by odana            ###   ########.fr       */
+/*   Updated: 2025/07/23 16:23:11 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ int	check_last_meal(t_data *data)
         pthread_mutex_unlock(&data->meal);
         if (current_last_meal > data->time_to_die)
         {
+			safe_log(data, data->philos[i].id, "died");
             pthread_mutex_lock(&data->death);
             data->simulation_end = 1;
             pthread_mutex_unlock(&data->death);
-            safe_log(data, data->philos[i].id, "died");
             return (0);
         }
         i++;
