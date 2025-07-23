@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 13:52:48 by odana             #+#    #+#             */
-/*   Updated: 2025/07/23 13:58:37 by odana            ###   ########.fr       */
+/*   Updated: 2025/07/23 14:26:03 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int main(int argc, char **argv)
     data = parse_arguments(argc, argv);
     if (!data)
         return (1);
-    if (!allocate_resources(data))
+    if (!allocate_philos(data))
     {
         printf("Error: Memory allocation failed\n");
         return (free(data), 1);
