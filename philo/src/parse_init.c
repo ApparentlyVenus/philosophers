@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 21:29:58 by odana             #+#    #+#             */
-/*   Updated: 2025/07/23 14:11:41 by odana            ###   ########.fr       */
+/*   Updated: 2025/07/24 14:54:54 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ t_data	*parse_arguments(int argc, char **argv)
 	else
 		data->meals_required = -1;
 	data->simulation_end = 0;
-	data->competing_philos = 0;
 	data->start_time = 0;
 	return (data);
 }
@@ -79,8 +78,7 @@ int	initialize_mutexes(t_data *data)
 			return (cleanup_mutexes(data, i), 0);
 		i++;
 	}
-	if (pthread_mutex_init(&data->eating_permission, NULL) != 0
-		|| pthread_mutex_init(&data->death, NULL) != 0
+	if (pthread_mutex_init(&data->death, NULL) != 0
 		|| pthread_mutex_init(&data->log, NULL) != 0
 		|| pthread_mutex_init(&data->meal, NULL) != 0)
 		return (cleanup_mutexes(data, data->num_philos), 0);

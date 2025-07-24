@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 21:30:24 by odana             #+#    #+#             */
-/*   Updated: 2025/07/24 14:40:23 by odana            ###   ########.fr       */
+/*   Updated: 2025/07/24 14:54:22 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,8 @@ typedef struct s_data
 	int				meals_required;
 	long long		start_time;
 	int				simulation_end;
-	int				competing_philos;
 	struct s_philo	*philos;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	eating_permission;
 	pthread_mutex_t	death;
 	pthread_mutex_t	log;
 	pthread_mutex_t	meal;
