@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 13:52:48 by odana             #+#    #+#             */
-/*   Updated: 2025/07/24 14:39:20 by odana            ###   ########.fr       */
+/*   Updated: 2025/07/24 14:48:59 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	start_simulation(t_data *data)
 	while (i < data->num_philos)
 	{
 		if (pthread_create(&data->philos[i].thread, NULL,
-				philosopher_routine, &data->philos[i]) != 0)
+				philo_routine, &data->philos[i]) != 0)
 			return (printf("Error creating philosopher thread %d\n", i + 1), 0);
 		i++;
 	}
