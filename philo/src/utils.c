@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 13:32:35 by odana             #+#    #+#             */
-/*   Updated: 2025/07/24 14:39:44 by odana            ###   ########.fr       */
+/*   Updated: 2025/07/24 15:08:51 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	safe_log(t_data *data, int philo_id, char *message)
 {
 	pthread_mutex_lock(&data->death);
 	pthread_mutex_lock(&data->log);
-	if (!data->simulation_end || (message && strcmp(message, "died") == 0))
+	if (!data->simulation_end || (message && ft_strcmp(message, "died") == 0))
 		printf("%lld %d %s\n", get_time() - data->start_time,
 			philo_id, message);
 	pthread_mutex_unlock(&data->log);
@@ -73,4 +73,18 @@ int	ft_atoi(char *str)
 		i++;
 	}
 	return (result * sign);
+}
+
+int	ft_strcmp(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] || s2[i])
+	{
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
+		i++;
+	}
+	return (0);
 }
