@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 13:30:06 by odana             #+#    #+#             */
-/*   Updated: 2025/07/24 14:30:13 by odana            ###   ########.fr       */
+/*   Updated: 2025/07/24 14:42:49 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,6 @@ int	handle_single_philosopher(t_philo *philo)
 	pthread_mutex_unlock(philo->left_fork);
 	return (0);
 }
-
-// void determine_fork_order(t_philo *philo, pthread_mutex_t **first, 
-//     pthread_mutex_t **second)
-// {
-//     if (philo->data->num_philos == 2 && philo->id == philo->data->num_philos)
-//     {
-//         *first = philo->right_fork;
-//         *second = philo->left_fork;
-//     }
-//     else if (philo->left_fork < philo->right_fork)
-//     {
-//         *first = philo->left_fork;
-//         *second = philo->right_fork;
-//     }
-//     else
-//     {
-//         *first = philo->right_fork;
-//         *second = philo->left_fork;
-//     }
-// }
 
 int	take_forks(t_philo *philo)
 {
