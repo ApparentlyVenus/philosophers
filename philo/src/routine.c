@@ -5,19 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/23 13:34:13 by odana             #+#    #+#             */
-/*   Updated: 2025/07/24 13:54:01 by odana            ###   ########.fr       */
+/*   Created: 2025/07/22 14:48:08 by odana             #+#    #+#             */
+/*   Updated: 2025/07/24 14:39:44 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philosophers.h"
 
-
-void *philosopher_routine(void *arg)
+void	*philo_routine(void *arg)
 {
-	t_philo *philo;
+	t_philo	*philo;
 	int		should_continue;
-	
+
 	philo = (t_philo *)arg;
 	if (philo->id % 2 == 0)
 	{
@@ -30,62 +29,39 @@ void *philosopher_routine(void *arg)
 		should_continue = !philo->data->simulation_end;
 		pthread_mutex_unlock(&philo->data->death);
 		if (!should_continue)
-			break;
-		// if (philo->data->meals_required != -1 && 
-		// philo->meals_eaten >= philo->data->meals_required)
-		// 	break ;
+			break ;
 		if (!philo_eat(philo))
 			break ;
 		philo_sleep(philo);
 		philo_think(philo);
-		// if (philo->data->num_philos == 2)
-		// {
-		// 	if (!philo_eat(philo))
-		// 		break;
-		// 	philo_sleep(philo);
-		// 	philo_think(philo);
-		// }
-		// else
-		// {
-		// 	if (!request_eating_permission(philo))
-		// 	{
-		// 	    philo_think(philo);
-		// 	    continue ;
-		// 	}
-		// 	if (!philo_eat(philo))
-		// 	{
-		// 	    release_eating_permission(philo);
-		// 	    break ;
-		// 	}
-		// 	release_eating_permission(philo);
-		// 	philo_sleep(philo);
-		// 	philo_think(philo);
-		// }
 	}
 	return (NULL);
 }
 
-// int request_eating_permission(t_philo *philo)
-// {
-//     pthread_mutex_lock(&philo->data->eating_permission);
-//     if (philo->data->simulation_end)
-// 	{
-//         pthread_mutex_unlock(&philo->data->eating_permission);
-//         return 0;
-//     }
-//     if (philo->data->competing_philos >= philo->data->num_philos - 1)
-// 	{
-//         pthread_mutex_unlock(&philo->data->eating_permission);
-//         return 0;
-//     }
-//     philo->data->competing_philos++;
-//     pthread_mutex_unlock(&philo->data->eating_permission);
-//     return (1); 
-// }
+int	philo_eat(t_philo *philo)
+{
+	if (!take_forks(philo))
+		return (0);
+	pthread_mutex_lock(&philo->data->meal);
+	philo->last_meal = get_time();
+	safe_log(philo->data, philo->id, "is eating");
+	pthread_mutex_unlock(&philo->data->meal);
+	precise_sleep(philo->data->time_to_eat, philo->data);
+	pthread_mutex_lock(&philo->data->meal);
+	philo->meals_eaten++;
+	pthread_mutex_unlock(&philo->data->meal);
+	release_forks(philo);
+	return (1);
+}
 
-// void release_eating_permission(t_philo *philo)
-// {
-//     pthread_mutex_lock(&philo->data->eating_permission);
-//     philo->data->competing_philos--;
-//     pthread_mutex_unlock(&philo->data->eating_permission);
-// }
+void	philo_sleep(t_philo *philo)
+{
+	safe_log(philo->data, philo->id, "is sleeping");
+	precise_sleep(philo->data->time_to_sleep, philo->data);
+}
+
+void	philo_think(t_philo *philo)
+{
+	safe_log(philo->data, philo->id, "is thinking");
+	usleep(1000);
+}

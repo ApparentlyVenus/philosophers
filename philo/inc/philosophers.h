@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 21:30:24 by odana             #+#    #+#             */
-/*   Updated: 2025/07/24 13:56:44 by odana            ###   ########.fr       */
+/*   Updated: 2025/07/24 14:40:23 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ typedef struct s_data
 	pthread_t		monitor_thread;
 }	t_data;
 
+// main routine function
+
+void		*philo_routine(void *arg);
+
 // philosopher actions
 
 int			philo_eat(t_philo *philo);
@@ -59,12 +63,11 @@ void		philo_think(t_philo *philo);
 // cleanup functions
 
 void		cleanup_mutexes(t_data *data, int count);
-void 		cleanup_resources(t_data *data);
+void		cleanup_resources(t_data *data);
 
 // utility functions
 
-long long	get_timestamp(void);
-long long	get_elapsed_time(t_data *data);
+long long	get_time(void);
 void		precise_sleep(int duration_ms, t_data *data);
 void		safe_log(t_data *data, int philo_id, char *message);
 int			ft_atoi(char *str);
@@ -81,12 +84,6 @@ int			initialize_mutexes(t_data *data);
 int			take_forks(t_philo *philo);
 void		release_forks(t_philo *philo);
 
-// routine and permissions
-
-void		*philosopher_routine(void *arg);
-int			request_eating_permission(t_philo *philo);
-void		release_eating_permission(t_philo *philo);
-
 // monitoring functions
 
 void		*death_monitor(void *arg);
@@ -96,6 +93,6 @@ int			check_meal_count(t_data *data);
 // thread creation and management
 
 int			start_simulation(t_data *data);
-void 		wait_for_completion(t_data *data);
+void		wait_for_completion(t_data *data);
 
 #endif
