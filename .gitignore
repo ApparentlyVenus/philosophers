@@ -2,5 +2,5 @@
 .o
 .out
 obj
-test.txt
+philo/test.txt
 philo/philo

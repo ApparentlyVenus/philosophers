@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 21:30:24 by odana             #+#    #+#             */
-/*   Updated: 2025/07/24 14:54:22 by odana            ###   ########.fr       */
+/*   Updated: 2025/07/24 15:13:43 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ long long	get_time(void);
 void		precise_sleep(int duration_ms, t_data *data);
 void		safe_log(t_data *data, int philo_id, char *message);
 int			ft_atoi(char *str);
+int			ft_strcmp(char *s1, char *s2);
+
 // parsing and initialization
 
 int			validate_arguments(int argc, char **argv);

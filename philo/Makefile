@@ -8,7 +8,7 @@ SRCDIR = src
 INCDIR = inc
 OBJDIR = obj
 
-SOURCES = main.c parse_init.c actions.c routine.c forks.c utils.c monitoring.c cleanup.c
+SOURCES = main.c parse_init.c routine.c forks.c utils.c monitoring.c cleanup.c
 SRCS = $(addprefix $(SRCDIR)/, $(SOURCES))
 OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 

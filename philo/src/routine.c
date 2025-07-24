@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:48:08 by odana             #+#    #+#             */
-/*   Updated: 2025/07/24 14:39:44 by odana            ###   ########.fr       */
+/*   Updated: 2025/07/24 15:19:05 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void	*philo_routine(void *arg)
 		if (!philo_eat(philo))
 			break ;
 		philo_sleep(philo);
-		philo_think(philo);
+		if (philo->data->num_philos % 2 == 1)
+			philo_think(philo);
 	}
 	return (NULL);
 }
@@ -63,5 +64,6 @@ void	philo_sleep(t_philo *philo)
 void	philo_think(t_philo *philo)
 {
 	safe_log(philo->data, philo->id, "is thinking");
-	usleep(1000);
+	precise_sleep((philo->data->time_to_eat * 2)
+		- philo->data->time_to_sleep, philo->data);
 }
