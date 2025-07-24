@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 13:30:06 by odana             #+#    #+#             */
-/*   Updated: 2025/07/24 14:50:35 by odana            ###   ########.fr       */
+/*   Updated: 2025/07/24 14:51:39 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	handle_single_philosopher(t_philo *philo)
 	pthread_mutex_lock(philo->left_fork);
 	safe_log(philo->data, philo->id, "has taken a fork");
 	pthread_mutex_unlock(philo->left_fork);
+	precise_sleep(philo->data->time_to_die + 1, philo->data);
 	return (0);
 }
 
