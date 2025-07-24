@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 23:24:02 by odana             #+#    #+#             */
-/*   Updated: 2025/07/24 14:43:22 by odana            ###   ########.fr       */
+/*   Updated: 2025/07/24 15:09:24 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	cleanup_resources(t_data *data)
 		pthread_mutex_destroy(&data->forks[i]);
 		i++;
 	}
-	pthread_mutex_destroy(&data->eating_permission);
 	pthread_mutex_destroy(&data->death);
 	pthread_mutex_destroy(&data->log);
 	pthread_mutex_destroy(&data->meal);
